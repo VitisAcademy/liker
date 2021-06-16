@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Ликёры, вермуты, биттеры</title>
+  <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/main.min.css">
+  <script src="js/draggabilly.pkgd.min.js"></script>
+  <script src="js/db.js"></script>
+</head>
+<body>
+<div class="ave">
+  <div class="ave__title">Введите email</div>
+  <input type="email" maxlength="40" autocomplete="off" onkeyup="checkValidate(this)" autofocus class="ave__input">
+  <div class="ave__button button" onclick="logIn()">Продолжить</div>
+</div>
+<div class="header">
+  <div class="header__menu" onclick="toggleHamburger()"></div>
+  <div class="header__title">Классификация</div>
+</div>
+<div class="main">
+  <div class="task">
+    <div class="lock hidden" style="z-index: 3"></div>
+    <div class="info" style="z-index: 2">
+      <div class="info__title">Определите, к какой группе относится ликёр.</div>
+      <div onclick="startInfo(this)" class="info__button button">Понятно!</div>
+    </div>
+    <div class="task__page any left" style="z-index: 1">
+      <div class="any__grid">
+        <div class="any__zone">
+          <div class="any__column" style="background-color: #FFC09F">Шоколад, орехи</div>
+          <div class="any__column" style="background-color: #c2967a">Пряности, травы</div>
+          <div class="any__column" style="background-color: #846653">Цитрусовые</div>
+          <div class="any__column" style="background-color: #6f5646">Фрукты</div>
+        </div>
+        <div class="any__move"></div>
+      </div>
+      <div class="button" onclick="scoreButton(0)">Нажмите для завершения!</div>
+    </div>
+  </div>
+
+  <div class="task hidden">
+    <div class="lock hidden"></div>
+    <div class="info">
+      <div class="info__title">Помогите журналисту написать статью. Для этого заполните пробелы в предложениях.</div>
+      <div onclick="startInfo(this)" class="info__button button">Понятно!</div>
+    </div>
+    <div class="task__page scribe left">
+      <div class="scribe__title">
+        Само слово “вермут” пошло от немецкого “wermut”, что означает “
+        <input type="text" maxlength="6" autocomplete="off" class="scribe__input" style='width: calc(99px + (111 - 99) * ((100vw - 320px) / 880))'>”. На территории современной
+        <input type="text" maxlength="8" autocomplete="off" class="scribe__input" style='width: calc(132px + (148 - 132) * ((100vw - 320px) / 880))'>местный народ производил напиток, в который добавлял эту траву. Собственно, с тех времён и закрепилось такое название. А вообще, нечто подобное создавали ещё в 1000 году до нашей эры в
+        <input type="text" maxlength="5" autocomplete="off" class="scribe__input" style='width: calc(83px + (93 - 83) * ((100vw - 320px) / 880))'>. В вино кидали разного рода травы, коренья, цветы, специи, чтобы сделать
+        <input type="text" maxlength="9" autocomplete="off" class="scribe__input" style='width: calc(149px + (167 - 149) * ((100vw - 320px) / 880))'>.<br><br>Что касается коммерческой стороны, то для этих целей вермут стали делать в
+        <input type="text" maxlength="6" autocomplete="off" class="scribe__input" style='width: calc(99px + (111 - 99) * ((100vw - 320px) / 880))'>. В 1786 году Антонио Бенедетто Карпано создал сладкий напиток. Произошло это в
+        <input type="text" maxlength="6" autocomplete="off" class="scribe__input" style='width: calc(99px + (111 - 99) * ((100vw - 320px) / 880))'>. Благодаря такому произведению алкогольного искусства о мастере узнали во всём городе, а богачи тут же выстроились в ряд, чтобы купить чудесное вино.<br><br>Чуть позже, в 1800-х года, но уже во
+        <input type="text" maxlength="7" autocomplete="off" class="scribe__input" style='width: calc(116px + (130 - 116) * ((100vw - 320px) / 880))'>вермут придумал Джозеф Нойли. Отличие от итальянского было в том, что он оказался совершенно
+        <input type="text" maxlength="5" autocomplete="off" class="scribe__input" style='width: calc(83px + (93 - 83) * ((100vw - 320px) / 880))'>, а не
+        <input type="text" maxlength="7" autocomplete="off" class="scribe__input" style='width: calc(116px + (130 - 116) * ((100vw - 320px) / 880))'>. Но это не стало минусом, а наоборот, заставило обратить на себя внимание и докатилось вплоть до Америки. Правда, там вермуты (и сладкий, и сухий) стали использовать для
+        <input type="text" maxlength="9" autocomplete="off" class="scribe__input" style='width: calc(149px + (167 - 149) * ((100vw - 320px) / 880))'>, тогда как европейцы пили его чистым или со льдом.
+      </div>
+      <div class=" button" onclick="scoreButton(1);scribeCheck()">Нажмите для завершения!</div>
+    </div>
+  </div>
+  
+  <!-- задания -->
+  
+  <div class="task hidden">
+    <div class="lock hidden"></div>
+    <div class="info">
+      <div class="info__title">Прочитайте внимательно вопрос. Дайте развёрнутый ответ в комментариях к уроку.</div>
+      <div onclick="startInfo(this)" class="info__button button">Понятно!</div>
+    </div>
+    <div class="task__page asked left">
+      <div class="asked__title"></div>
+      <div class=" button" onclick="endButton()">Дать ответ!</div>
+    </div>
+  </div>
+</div>
+<div class="footer"></div>
+<div class="menu menu__off">
+  <div class="menu__content"></div>
+</div>
+<script src="js/scribe.js"></script>
+<script src="js/sort_any.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
